@@ -33,23 +33,26 @@ namespace Hesla
             string jmeno = textBox3.Text;
             string password = textBox4.Text;
             bool successLogin = false;
-            foreach (Users u in DataHandler.seznamUzivatelu)
+            if (!string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox4.Text))
             {
-                if (u.userName.Equals(jmeno) && u.password.Equals(Users.HashPassword(password)))
-                {
-                    DataHandler.currentUser = u;
-                    Form2 form = new Form2();
-                    successLogin = true;
-                    form.Show();
 
+                foreach (Users u in DataHandler.seznamUzivatelu)
+                {
+                    if (u.userName.Equals(jmeno) && u.password.Equals(Users.HashPassword(password)))
+                    {
+                        DataHandler.currentUser = u;
+                        Form2 form = new Form2();
+                        successLogin = true;
+                        form.Show();
+                    }
                 }
             }
-            if (!successLogin)
-            {
-                MessageBox.Show("Spatne prihlasovaci udaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);                
-            }   
-            successLogin = false;
-            textBox4.Text = "";
+                if (!successLogin)
+                {
+                    MessageBox.Show("Spatne prihlasovaci udaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                successLogin = false;
+                textBox4.Text = "";            
         }
         
             private void Form1_Load(object sender, EventArgs e)
