@@ -31,7 +31,8 @@ namespace Hesla
                 isAdmin = firstRegistraton
             };
             DataHandler.seznamUzivatelu.Add(newUser);
-            Users.SaveXML();           
+            Users.SaveXML();
+            MessageBox.Show("Uzivatel pridan");
             this.Close();
         
         }

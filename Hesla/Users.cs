@@ -27,8 +27,7 @@ namespace Hesla
                     XmlSerializer serializer = new XmlSerializer(typeof(List<Users>));
                     serializer.Serialize(fs, DataHandler.seznamUzivatelu);
 
-                }
-                MessageBox.Show("Uzivatel pridan");
+                }                
             }
             catch (Exception ex)
             {
