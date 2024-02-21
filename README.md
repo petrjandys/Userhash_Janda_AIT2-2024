@@ -1,0 +1,1 @@
+The project was made by Janda for the subject Basics of Programming at the Higher Vocational School in Pilsen. It is a .Net Forms login application and account manager utilizing password hashing and general accounts management
