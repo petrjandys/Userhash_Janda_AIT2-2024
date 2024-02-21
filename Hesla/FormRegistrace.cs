@@ -24,18 +24,26 @@ namespace Hesla
         private void Registerbtn_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
-            {
-                string hashedPassword = Users.HashPassword(textBox2.Text);
-                Users newUser = new Users
+            {            
+                if (DataHandler.seznamUzivatelu.Any(user => user.userName == textBox1.Text))
                 {
-                    userName = textBox1.Text,
-                    password = hashedPassword,
-                    isAdmin = firstRegistraton
-                };
-                DataHandler.seznamUzivatelu.Add(newUser);
-                Users.SaveXML();
-                MessageBox.Show("Uzivatel pridan", "uspech", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                    MessageBox.Show("Uzivatel pod timto jmenem jiz existuje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    string hashedPassword = Users.HashPassword(textBox2.Text);
+                    Users newUser = new Users
+                    {
+                        userName = textBox1.Text,
+                        password = hashedPassword,
+                        isAdmin = firstRegistraton
+                    };
+
+                    DataHandler.seznamUzivatelu.Add(newUser);
+                    Users.SaveXML();
+                    MessageBox.Show("Uzivatel pridan", "Uspech", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
             else
             {
