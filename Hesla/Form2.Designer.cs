@@ -32,8 +32,8 @@
             this.ChangePassTextbox = new System.Windows.Forms.TextBox();
             this.ChangePassBtn = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,14 +81,6 @@
             this.panel1.Size = new System.Drawing.Size(236, 170);
             this.panel1.TabIndex = 4;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 16);
-            this.label1.TabIndex = 4;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -98,6 +90,14 @@
             this.label2.Size = new System.Drawing.Size(96, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "Změna hesla";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(95, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 16);
+            this.label1.TabIndex = 4;
             // 
             // welcomeLabel
             // 

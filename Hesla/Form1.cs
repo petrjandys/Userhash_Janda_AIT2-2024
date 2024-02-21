@@ -26,27 +26,33 @@ namespace Hesla
         {
             Form2 form = new Form2();
             form.Show();
-        }       
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             string jmeno = textBox3.Text;
             string password = textBox4.Text;
-            foreach(Users u in DataHandler.seznamUzivatelu)
+            bool successLogin = false;
+            foreach (Users u in DataHandler.seznamUzivatelu)
             {
                 if (u.userName.Equals(jmeno) && u.password.Equals(Users.HashPassword(password)))
                 {
                     DataHandler.currentUser = u;
                     Form2 form = new Form2();
-                    
+                    successLogin = true;
                     form.Show();
-                    
-                }
-                
-            }
-        }
 
-        private void Form1_Load(object sender, EventArgs e)
+                }
+            }
+            if (!successLogin)
+            {
+                MessageBox.Show("Spatne prihlasovaci udaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+            }   
+            successLogin = false;
+            textBox4.Text = "";
+        }
+        
+            private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
@@ -61,17 +67,10 @@ namespace Hesla
             }
             catch
             {
-                MessageBox.Show("Chyba při načítání kontaktů ze souboru");
+                MessageBox.Show("Chyba při načítání kontaktů ze souboru", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
         }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            FormRegistrace form3 = new FormRegistrace();
-            form3.Show();
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             FormRegistrace reg = new FormRegistrace();

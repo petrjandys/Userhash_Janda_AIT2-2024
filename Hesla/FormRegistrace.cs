@@ -23,18 +23,24 @@ namespace Hesla
 
         private void Registerbtn_Click(object sender, EventArgs e)
         {
-            string hashedPassword = Users.HashPassword(textBox2.Text);
-            Users newUser = new Users
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
             {
-                userName = textBox1.Text,
-                password = hashedPassword,
-                isAdmin = firstRegistraton
-            };
-            DataHandler.seznamUzivatelu.Add(newUser);
-            Users.SaveXML();
-            MessageBox.Show("Uzivatel pridan");
-            this.Close();
-        
+                string hashedPassword = Users.HashPassword(textBox2.Text);
+                Users newUser = new Users
+                {
+                    userName = textBox1.Text,
+                    password = hashedPassword,
+                    isAdmin = firstRegistraton
+                };
+                DataHandler.seznamUzivatelu.Add(newUser);
+                Users.SaveXML();
+                MessageBox.Show("Uzivatel pridan", "uspech", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Zadej udaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void FormRegistrace_Load(object sender, EventArgs e)
@@ -42,7 +48,7 @@ namespace Hesla
             if (DataHandler.seznamUzivatelu == null || DataHandler.seznamUzivatelu.Count == 0)
             {
                 firstRegistraton = true;
-                MessageBox.Show("Prvni ucet bude zaregistrovany jako administrátorský");
+                MessageBox.Show("Prvni ucet bude zaregistrovany jako administratorsky", "Defaultni ucet", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 
             }
         }

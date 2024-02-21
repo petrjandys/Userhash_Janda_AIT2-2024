@@ -35,6 +35,7 @@ namespace Hesla
             {
                 label1.Text = currentUser.userName;
                 listBox1.Visible = false;
+                panel1.Location = new Point(50, 50);
             }
         }
 
@@ -49,22 +50,24 @@ namespace Hesla
                         Users selectedUser = DataHandler.seznamUzivatelu[listBox1.SelectedIndex];
                         selectedUser.password = Users.HashPassword(ChangePassTextbox.Text);
                         Users.SaveXML();
-                        MessageBox.Show("Uzivateli bylo zmeneno heslo");
+                        MessageBox.Show($"Uzivateli {selectedUser.userName} bylo zmeneno heslo", "Uspech", MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
                     }
                     else
                     {
-                        MessageBox.Show("Vyber uzivatele v seznamu.");
+                        MessageBox.Show("Vyber uzivatele v seznamu.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
                     DataHandler.currentUser.password = Users.HashPassword(ChangePassTextbox.Text);
                     Users.SaveXML();
-                    MessageBox.Show("Vase heslo by uspesne zmeneno");
+                    MessageBox.Show("Vase heslo by uspesne zmeneno", "Uspech", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
-            else { MessageBox.Show("Zadej heslo");
+            else { 
+                MessageBox.Show("Zadej heslo", "Chyba", MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
+            ChangePassTextbox.Text = "";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
