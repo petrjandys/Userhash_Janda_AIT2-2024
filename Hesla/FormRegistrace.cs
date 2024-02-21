@@ -23,10 +23,11 @@ namespace Hesla
 
         private void Registerbtn_Click(object sender, EventArgs e)
         {
+            string hashedPassword = Users.HashPassword(textBox2.Text);
             Users newUser = new Users
             {
                 userName = textBox1.Text,
-                password = textBox2.Text,
+                password = hashedPassword,
                 isAdmin = firstRegistraton
             };
             DataHandler.seznamUzivatelu.Add(newUser);

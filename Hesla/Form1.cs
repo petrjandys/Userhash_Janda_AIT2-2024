@@ -34,7 +34,7 @@ namespace Hesla
             string password = textBox4.Text;
             foreach(Users u in DataHandler.seznamUzivatelu)
             {
-                if(u.userName.Equals(jmeno) && u.password.Equals(password))
+                if (u.userName.Equals(jmeno) && u.password.Equals(Users.HashPassword(password)))
                 {
                     DataHandler.currentUser = u;
                     Form2 form = new Form2();
