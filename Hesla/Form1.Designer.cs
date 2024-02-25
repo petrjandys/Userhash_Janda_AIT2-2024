@@ -50,6 +50,7 @@
             // 
             // button2
             // 
+            this.button2.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button2.Location = new System.Drawing.Point(86, 117);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
@@ -98,6 +99,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button1.Location = new System.Drawing.Point(86, 153);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
@@ -111,6 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(264, 206);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -119,6 +122,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox4);
+            this.ForeColor = System.Drawing.SystemColors.Desktop;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";

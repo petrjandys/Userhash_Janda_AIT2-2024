@@ -27,7 +27,10 @@ namespace Hesla
             Form2 form = new Form2();
             form.Show();
         }
-
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             string jmeno = textBox3.Text;
@@ -39,11 +42,14 @@ namespace Hesla
                 foreach (Users u in DataHandler.seznamUzivatelu)
                 {
                     if (u.userName.Equals(jmeno) && u.password.Equals(Users.HashPassword(password)))
-                    {
+                    {            
                         DataHandler.currentUser = u;
                         Form2 form = new Form2();
+                        form.FormClosed += Form1_FormClosed;
                         successLogin = true;
                         form.Show();
+                        this.Hide();
+                        
                     }
                 }
             }

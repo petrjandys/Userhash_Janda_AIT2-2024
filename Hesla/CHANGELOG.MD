@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.2.1
+
+- added logout button
+- visual enhancements
+
 ## 1.2.0
 
 - fixed the issue of adding multiple users with the same username

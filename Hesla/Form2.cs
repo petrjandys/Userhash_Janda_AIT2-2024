@@ -77,5 +77,12 @@ namespace Hesla
                 label1.Text =  DataHandler.seznamUzivatelu[listBox1.SelectedIndex].userName;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();  
+            Form1 form1 = new Form1();
+            form1.Show();
+        }
     }
 }
