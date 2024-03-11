@@ -65,20 +65,14 @@ namespace Hesla
         {
             try
             {
-                if (File.Exists(DataHandler.xmlSoubor))
-                {
-                    using (FileStream fs = new FileStream(DataHandler.xmlSoubor, FileMode.Open))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(List<Users>));
-                        DataHandler.seznamUzivatelu = (List<Users>)serializer.Deserialize(fs);
-                    }
-                }
+                DataHandler.InitializeDatabase();
+                DataHandler.LoadFromDatabase();
             }
             catch
             {
-                MessageBox.Show("Chyba při načítání kontaktů ze souboru", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Chyba při načítání uživatelů z databáze", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
         }
         private void button1_Click_1(object sender, EventArgs e)
         {

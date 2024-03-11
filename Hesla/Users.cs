@@ -1,39 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Data.SQLite;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace Hesla
 {
     [Serializable]
     public class Users
     {
-
         public string userName { get; set; }
         public string password { get; set; }
         public bool isAdmin { get; set; }
 
-        public static void SaveXML()
-        {            
+        public static void SaveToDatabase()
+        {
             try
             {
-                using (FileStream fs = new FileStream(DataHandler.xmlSoubor, FileMode.Create))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(List<Users>));
-                    serializer.Serialize(fs, DataHandler.seznamUzivatelu);
+                Users currentUser = DataHandler.currentUser;
 
-                }                
+                if (currentUser != null)
+                {
+                    using (SQLiteConnection connection = new SQLiteConnection(DataHandler.connectionString))
+                    {
+                        connection.Open();
+
+                        string insertQuery = "INSERT INTO Users (UserName, Password, IsAdmin) VALUES (@UserName, @Password, @IsAdmin);";
+                        using (SQLiteCommand command = new SQLiteCommand(insertQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@UserName", currentUser.userName);
+                            command.Parameters.AddWithValue("@Password", currentUser.password);
+                            command.Parameters.AddWithValue("@IsAdmin", currentUser.isAdmin ? 1 : 0);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+                else
+                {
+                 //   MessageBox.Show("Aktuální uživatel není nastaven.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Chyba při ukládání uzivatele: " + ex.Message);
+                MessageBox.Show("Chyba při ukládání uživatele: " + ex.Message);
             }
         }
+
+
+        public static void SaveXML()
+        {
+            // Ponechte tuto metodu pro zpětnou kompatibilitu, i když nyní používáme databázi.
+        }
+
         public static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

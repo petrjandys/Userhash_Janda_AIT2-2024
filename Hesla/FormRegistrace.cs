@@ -24,10 +24,10 @@ namespace Hesla
         private void Registerbtn_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
-            {            
+            {
                 if (DataHandler.seznamUzivatelu.Any(user => user.userName == textBox1.Text))
                 {
-                    MessageBox.Show("Uzivatel pod timto jmenem jiz existuje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Uživatel pod tímto jménem již existuje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -40,17 +40,16 @@ namespace Hesla
                     };
 
                     DataHandler.seznamUzivatelu.Add(newUser);
-                    Users.SaveXML();
-                    MessageBox.Show("Uzivatel pridan", "Uspech", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Users.SaveToDatabase();  // Uložíme nového uživatele do databáze
+                    MessageBox.Show("Uživatel přidán", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
             }
             else
             {
-                MessageBox.Show("Zadej udaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Zadejte údaje", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         private void FormRegistrace_Load(object sender, EventArgs e)
         {
             if (DataHandler.seznamUzivatelu == null || DataHandler.seznamUzivatelu.Count == 0)
