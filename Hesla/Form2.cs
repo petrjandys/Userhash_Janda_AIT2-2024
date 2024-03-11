@@ -12,7 +12,7 @@ namespace Hesla
 {
     public partial class Form2 : Form
     {
-        private string xmlSoubor = DataHandler.xmlSoubor;
+        //private string xmlSoubor = DataHandler.xmlSoubor;
         private Users currentUser = DataHandler.currentUser;
         private List<Users> seznamUzivatelu = DataHandler.seznamUzivatelu;
         public Form2()
@@ -49,23 +49,24 @@ namespace Hesla
                     {
                         Users selectedUser = DataHandler.seznamUzivatelu[listBox1.SelectedIndex];
                         selectedUser.password = Users.HashPassword(ChangePassTextbox.Text);
-                        Users.SaveXML();
-                        MessageBox.Show($"Uzivateli {selectedUser.userName} bylo zmeneno heslo", "Uspech", MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                        Users.SaveToDatabase(); 
+                        MessageBox.Show($"Uživateli {selectedUser.userName} bylo změněno heslo", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                     else
                     {
-                        MessageBox.Show("Vyber uzivatele v seznamu.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Vyberte uživatele ze seznamu.", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
                     DataHandler.currentUser.password = Users.HashPassword(ChangePassTextbox.Text);
-                    Users.SaveXML();
-                    MessageBox.Show("Vase heslo by uspesne zmeneno", "Uspech", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    Users.SaveToDatabase();  
+                    MessageBox.Show("Vaše heslo bylo úspěšně změněno", "Úspěch", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
-            else { 
-                MessageBox.Show("Zadej heslo", "Chyba", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            else
+            {
+                MessageBox.Show("Zadejte heslo", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             ChangePassTextbox.Text = "";
         }
